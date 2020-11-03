@@ -1,24 +1,32 @@
 # README
+# Notable Health Coding Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### `Framework:`
 
-Things you may want to cover:
+* Ruby 2.5.1
+* Rails
+* React.js
+* Redux.js
+* PostgresSQL
+* Webpack
 
-* Ruby version
+### `Setup:`
+*To run locally on computer*:
 
-* System dependencies
+In terminal: 
+ 1. `bundle install`
+ 2. `npm install`
+ 
+In computer: 
 
-* Configuration
+ 3. Start PostgreSQL to start database
+ 
+In terminal: 
 
-* Database creation
+ 4. `rails db:setup` to setup database and `rails db:seed` to seed database
+ 5. `rails s` to start Rails Server
+ 6. `npm start` to start Webpack module bundler
 
-* Database initialization
+In browser: 
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ 7. `http://localhost:3000`
