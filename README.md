@@ -12,7 +12,7 @@
 
 ### `Setup:`
 *To run locally on computer*:
-On GitHub, `git clone` and copy and paste the code url.
+On GitHub, copy the code url and run `git clone` followed by the url in the terminal.
 
 In terminal: 
  1. `bundle install`
