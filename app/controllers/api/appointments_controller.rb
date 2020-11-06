@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-    #retrive all appointments
+    #retrieve all appointments
     def index
         @appointments = Appointment.all
         render :index
