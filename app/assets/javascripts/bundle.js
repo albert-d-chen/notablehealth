@@ -90,7 +90,7 @@
 /*!*************************************************!*\
   !*** ./frontend/actions/appointment_actions.js ***!
   \*************************************************/
-/*! exports provided: RECEIVE_APPOINTMENTS, receiveAppointments, getAppointments */
+/*! exports provided: RECEIVE_APPOINTMENTS, receiveAppointments, getAppointments, createAppointment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,6 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_APPOINTMENTS", function() { return RECEIVE_APPOINTMENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAppointments", function() { return receiveAppointments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAppointments", function() { return getAppointments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppointment", function() { return createAppointment; });
 /* harmony import */ var _util_appointment_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/appointment_api_util */ "./frontend/util/appointment_api_util.js");
 
 var RECEIVE_APPOINTMENTS = "RECEIVE_APPOINTMENTS";
@@ -114,6 +115,11 @@ var getAppointments = function getAppointments() {
     });
   };
 };
+var createAppointment = function createAppointment(appointment) {
+  return function (dispatch) {
+    return _util_appointment_api_util__WEBPACK_IMPORTED_MODULE_0__["createAppointment"](appointment);
+  };
+}; // .then((appointments) => dispatch(receiveAppointments(appointments)))
 
 /***/ }),
 
@@ -328,6 +334,161 @@ var mapDTP = function mapDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/form.js":
+/*!*************************************!*\
+  !*** ./frontend/components/form.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var AppointmentForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(AppointmentForm, _React$Component);
+
+  var _super = _createSuper(AppointmentForm);
+
+  function AppointmentForm(props) {
+    var _this;
+
+    _classCallCheck(this, AppointmentForm);
+
+    _this = _super.call(this, props);
+    _this.state = _this.props.appointment;
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(AppointmentForm, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.props.createAppointment(_objectSpread(_objectSpread({}, this.state), {}, {
+        physician_id: this.props.physicianId
+      })).then(function () {
+        return _this2.props.getAppointments();
+      });
+      this.setState({
+        name: '',
+        time: '',
+        kind: ''
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
+
+      return function (e) {
+        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Make Appointment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.name,
+        onChange: this.update('name'),
+        placeholder: "Name"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.time,
+        onChange: this.update('time'),
+        placeholder: "Time"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.kind,
+        onChange: this.update('kind'),
+        placeholder: "Kind"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Confirm")));
+    }
+  }]);
+
+  return AppointmentForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AppointmentForm);
+
+/***/ }),
+
+/***/ "./frontend/components/form_container.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/form_container.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form */ "./frontend/components/form.js");
+/* harmony import */ var _actions_appointment_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/appointment_actions */ "./frontend/actions/appointment_actions.js");
+
+
+
+
+var mapSTP = function mapSTP() {
+  return {
+    appointment: {
+      name: '',
+      time: '',
+      kind: ''
+    }
+  };
+};
+
+var mapDTP = function mapDTP(dispatch) {
+  return {
+    createAppointment: function createAppointment(appointment) {
+      return dispatch(Object(_actions_appointment_actions__WEBPACK_IMPORTED_MODULE_2__["createAppointment"])(appointment));
+    },
+    getAppointments: function getAppointments(appointments) {
+      return dispatch(Object(_actions_appointment_actions__WEBPACK_IMPORTED_MODULE_2__["getAppointments"])(appointments));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapSTP, mapDTP)(_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/physician_index.js":
 /*!************************************************!*\
   !*** ./frontend/components/physician_index.js ***!
@@ -340,6 +501,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _appointment_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./appointment_index_container */ "./frontend/components/appointment_index_container.jsx");
+/* harmony import */ var _form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form_container */ "./frontend/components/form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -361,6 +523,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -389,6 +552,13 @@ var PhysicianIndex = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.getPhysicians();
       this.props.getAppointments();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.appointments.length !== this.props.appointments.length) {
+        this.props.getAppointments();
+      }
     } //set state to be physician clicked
 
   }, {
@@ -435,7 +605,9 @@ var PhysicianIndex = /*#__PURE__*/function (_React$Component) {
         className: "logout"
       }, "Logout")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "appointments"
-      }, this.state.idx !== null && this.state.id !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Dr. ".concat(physicians[this.state.idx].first_name, " ").concat(physicians[this.state.idx].last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "".concat(physicians[this.state.idx].last_name.toLowerCase(), "@notablehealth.com"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_appointment_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, this.state.idx !== null && this.state.id !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Dr. ".concat(physicians[this.state.idx].first_name, " ").concat(physicians[this.state.idx].last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "".concat(physicians[this.state.idx].last_name.toLowerCase(), "@notablehealth.com")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        physicianId: this.state.id
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_appointment_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         filteredAppointments: filteredAppointments
       })));
     }
@@ -667,16 +839,26 @@ var configureStore = function configureStore() {
 /*!***********************************************!*\
   !*** ./frontend/util/appointment_api_util.js ***!
   \***********************************************/
-/*! exports provided: fetchAppointments */
+/*! exports provided: fetchAppointments, createAppointment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAppointments", function() { return fetchAppointments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppointment", function() { return createAppointment; });
 var fetchAppointments = function fetchAppointments() {
   return $.ajax({
     method: "GET",
     url: "/api/appointments"
+  });
+};
+var createAppointment = function createAppointment(appointment) {
+  return $.ajax({
+    method: 'POST',
+    url: "/api/appointments",
+    data: {
+      appointment: appointment
+    }
   });
 };
 

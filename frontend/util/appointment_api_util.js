@@ -4,3 +4,11 @@ export const fetchAppointments = () =>
     url: `/api/appointments`,
   });
 
+export const createAppointment = (appointment) => (
+  $.ajax({
+    method: 'POST',
+    url: `/api/appointments`,
+    data: {appointment}
+  })
+)
+

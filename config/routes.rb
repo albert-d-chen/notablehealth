@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
   namespace :api, defaults: {format: :json} do 
     resources :physicians, only: [:index, :show]
-    resources :appointments, only: [:index]
+    resources :appointments, only: [:index, :create]
   end
 end

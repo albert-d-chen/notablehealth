@@ -1,5 +1,6 @@
 import React from 'react';
 import AppointmentContainer from './appointment_index_container'
+import AppointmentForm from './form_container';
 
 class PhysicianIndex extends React.Component{
     constructor(props) {
@@ -15,6 +16,13 @@ class PhysicianIndex extends React.Component{
         this.props.getPhysicians();
         this.props.getAppointments();
     }
+
+    componentDidUpdate(prevProps){
+        if (prevProps.appointments.length !== this.props.appointments.length) {
+            this.props.getAppointments();
+        }
+    }
+
     //set state to be physician clicked
     filterAppointments(physicianId, idx) {
         this.setState({id: physicianId, idx: idx})
@@ -48,6 +56,7 @@ class PhysicianIndex extends React.Component{
                 <div>
                     <h3>{`Dr. ${physicians[this.state.idx].first_name} ${physicians[this.state.idx].last_name}`}</h3> 
                     <h5>{`${physicians[this.state.idx].last_name.toLowerCase()}@notablehealth.com`}</h5> 
+                    <AppointmentForm physicianId={this.state.id}/>
                 </div>
                 : <div/> }
 

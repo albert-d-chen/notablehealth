@@ -12,3 +12,10 @@ export const getAppointments = () => (dispatch) => (
   AppointmentAPIUtil.fetchAppointments()
     .then((appointments) => dispatch(receiveAppointments(appointments)))
 )
+
+export const createAppointment = (appointment) => (dispatch) => {
+  return AppointmentAPIUtil.createAppointment(appointment)
+
+}
+    // .then((appointments) => dispatch(receiveAppointments(appointments)))
+
